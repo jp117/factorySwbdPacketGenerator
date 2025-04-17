@@ -1,0 +1,28 @@
+   # Python
+   __pycache__/
+   *.py[cod]
+   *.pyo
+   *.pyd
+   *.db
+
+   # Virtual environment
+   venv/
+   env/
+   ENV/
+   .env
+
+   # Output directory
+   output/
+
+   # IDE files
+   *.idea/
+   *.vscode/
+
+   # Logs
+   *.log
+
+   # Temporary files
+   *.tmp
+
+   # Jupyter Notebook checkpoints
+   .ipynb_checkpoints

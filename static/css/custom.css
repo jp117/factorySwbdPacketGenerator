@@ -1,0 +1,61 @@
+/* Upload Section */
+.upload-container {
+    @apply bg-white rounded-lg shadow-sm p-3 mb-4;
+}
+
+.upload-title {
+    @apply text-lg font-semibold text-gray-900 mb-2;
+}
+
+.upload-area {
+    @apply flex items-center justify-center w-full h-12 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors;
+}
+
+.upload-content {
+    @apply flex items-center justify-center space-x-2 px-4;
+}
+
+.upload-icon {
+    @apply w-4 h-4 text-gray-500;
+}
+
+.upload-text {
+    @apply text-sm text-gray-500;
+}
+
+.upload-button {
+    @apply px-3 py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors text-sm;
+}
+
+/* Assembly List Section */
+.assembly-container {
+    @apply bg-white rounded-lg shadow-sm p-3;
+}
+
+.assembly-title {
+    @apply text-lg font-semibold text-gray-900 mb-2;
+}
+
+.assembly-item {
+    @apply flex items-center space-x-4 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors;
+}
+
+.assembly-checkbox {
+    @apply h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded;
+}
+
+.assembly-label {
+    @apply text-sm text-gray-700;
+}
+
+.assembly-actions {
+    @apply flex justify-between items-center pt-3;
+}
+
+.assembly-button {
+    @apply text-sm text-blue-600 hover:text-blue-800;
+}
+
+.generate-button {
+    @apply px-3 py-1.5 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors text-sm;
+} 

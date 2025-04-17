@@ -1,0 +1,12 @@
+{
+  "name": "drawing-packet-generator",
+  "version": "1.0.0",
+  "description": "Web application for generating drawing packets",
+  "scripts": {
+    "build": "tailwindcss -i ./static/css/input.css -o ./static/css/main.css",
+    "watch": "tailwindcss -i ./static/css/input.css -o ./static/css/main.css --watch"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.3.0"
+  }
+} 
