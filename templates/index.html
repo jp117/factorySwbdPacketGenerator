@@ -46,6 +46,10 @@
                     <label class="block text-sm font-medium text-gray-700 mb-2">Common Depth</label>
                     <div class="space-y-2">
                         <div class="flex items-center">
+                            <input type="radio" id="depth_no" name="common_depth" value="no" class="h-4 w-4 text-blue-600 focus:ring-blue-500" onchange="toggleCommonDepth()">
+                            <label for="depth_no" class="ml-2 text-sm text-gray-700">No</label>
+                        </div>
+                        <div class="flex items-center">
                             <input type="radio" id="depth_24" name="common_depth" value="24" class="h-4 w-4 text-blue-600 focus:ring-blue-500" onchange="toggleCommonDepth()">
                             <label for="depth_24" class="ml-2 text-sm text-gray-700">24"</label>
                         </div>
@@ -63,8 +67,45 @@
                     <label class="block text-sm font-medium text-gray-700 mb-2">Common Height</label>
                     <div class="space-y-2">
                         <div class="flex items-center">
+                            <input type="radio" id="height_no" name="common_height" value="no" class="h-4 w-4 text-blue-600 focus:ring-blue-500" onchange="toggleCommonHeight()">
+                            <label for="height_no" class="ml-2 text-sm text-gray-700">No</label>
+                        </div>
+                        <div class="flex items-center">
                             <input type="radio" id="height_90" name="common_height" value="90" class="h-4 w-4 text-blue-600 focus:ring-blue-500" onchange="toggleCommonHeight()">
                             <label for="height_90" class="ml-2 text-sm text-gray-700">90"</label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Common Amperage</label>
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <input type="radio" id="amperage_no" name="common_amperage" value="no" class="h-4 w-4 text-blue-600 focus:ring-blue-500" onchange="toggleCommonAmperage()">
+                            <label for="amperage_no" class="ml-2 text-sm text-gray-700">No</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="amperage_1000" name="common_amperage" value="1000" class="h-4 w-4 text-blue-600 focus:ring-blue-500" onchange="toggleCommonAmperage()">
+                            <label for="amperage_1000" class="ml-2 text-sm text-gray-700">1000A</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="amperage_1200" name="common_amperage" value="1200" class="h-4 w-4 text-blue-600 focus:ring-blue-500" onchange="toggleCommonAmperage()">
+                            <label for="amperage_1200" class="ml-2 text-sm text-gray-700">1200A</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="amperage_2000" name="common_amperage" value="2000" class="h-4 w-4 text-blue-600 focus:ring-blue-500" onchange="toggleCommonAmperage()">
+                            <label for="amperage_2000" class="ml-2 text-sm text-gray-700">2000A</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="amperage_2500" name="common_amperage" value="2500" class="h-4 w-4 text-blue-600 focus:ring-blue-500" onchange="toggleCommonAmperage()">
+                            <label for="amperage_2500" class="ml-2 text-sm text-gray-700">2500A</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="amperage_3000" name="common_amperage" value="3000" class="h-4 w-4 text-blue-600 focus:ring-blue-500" onchange="toggleCommonAmperage()">
+                            <label for="amperage_3000" class="ml-2 text-sm text-gray-700">3000A</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="amperage_4000" name="common_amperage" value="4000" class="h-4 w-4 text-blue-600 focus:ring-blue-500" onchange="toggleCommonAmperage()">
+                            <label for="amperage_4000" class="ml-2 text-sm text-gray-700">4000A</label>
                         </div>
                     </div>
                 </div>

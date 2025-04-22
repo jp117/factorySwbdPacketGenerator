@@ -25,11 +25,12 @@ def generate():
         pdf_path = pdf_generator.generate_pdf(form_data)
         print("PDF generated at:", pdf_path)  # Debug log
         
-        # Return the PDF file directly
+        # Return the PDF file directly to the browser
         return send_file(
             pdf_path,
             as_attachment=True,
-            download_name=f"packet_{form_data['timestamp']}.pdf"
+            download_name=f"packet_{form_data['timestamp']}.pdf",
+            mimetype='application/pdf'
         )
         
     except Exception as e:
