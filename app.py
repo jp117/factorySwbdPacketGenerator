@@ -3,6 +3,7 @@ import os
 import json
 from datetime import datetime
 from utils.pdf_generator import PDFGenerator
+import time
 
 app = Flask(__name__)
 pdf_generator = PDFGenerator()
@@ -11,34 +12,32 @@ pdf_generator = PDFGenerator()
 def index():
     return render_template('index.html')
 
-@app.route('/generate', methods=['POST'])
-def generate():
+@app.route('/generate_pdf', methods=['POST'])
+def generate_pdf():
     try:
-        # Get form data
         form_data = request.form.to_dict()
-        print("Form data received:", form_data)  # Debug log
-        
-        # Add timestamp to the data
-        form_data['timestamp'] = datetime.now().strftime('%Y%m%d_%H%M%S')
+        form_data['timestamp'] = time.strftime("%Y%m%d_%H%M%S")
         
         # Generate the PDF
         pdf_path = pdf_generator.generate_pdf(form_data)
-        print("PDF generated at:", pdf_path)  # Debug log
         
-        # Return the PDF file directly to the browser
-        return send_file(
-            pdf_path,
-            as_attachment=True,
-            download_name=f"packet_{form_data['timestamp']}.pdf",
-            mimetype='application/pdf'
-        )
+        # Create a formatted filename with Sales Order, Customer Name, and Switchboard Name
+        sales_order = form_data.get('sales_order', 'Unknown')
+        customer_name = form_data.get('customer_name', 'Unknown')
+        switchboard_name = form_data.get('switchboard_name', 'Unknown')
         
+        # Clean the values to make them safe for filenames
+        sales_order = ''.join(c for c in sales_order if c.isalnum() or c in ' -_')
+        customer_name = ''.join(c for c in customer_name if c.isalnum() or c in ' -_')
+        switchboard_name = ''.join(c for c in switchboard_name if c.isalnum() or c in ' -_')
+        
+        # Create the formatted filename
+        download_name = f"{sales_order} - {customer_name} - {switchboard_name} - Factory Packet.pdf"
+        
+        # Return the PDF file
+        return send_file(pdf_path, as_attachment=True, download_name=download_name)
     except Exception as e:
-        print("Error generating PDF:", str(e))  # Debug log
-        return jsonify({
-            'success': False,
-            'message': str(e)
-        }), 500
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/download/<filename>')
 def download(filename):

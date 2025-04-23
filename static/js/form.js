@@ -230,6 +230,80 @@ const ImageSelectionModule = {
     }
 };
 
+// Common Settings Module - Handles common settings toggles and state
+const CommonSettingsModule = {
+    settings: {
+        depth: {
+            name: 'common_depth',
+            toggle: 'toggleCommonDepth',
+            selector: 'input[name^="depth_"]'
+        },
+        height: {
+            name: 'common_height',
+            toggle: 'toggleCommonHeight',
+            selector: 'input[name^="height_"]'
+        },
+        amperage: {
+            name: 'common_amperage',
+            toggle: 'toggleCommonAmperage',
+            selector: 'select[name^="amperage_"]'
+        },
+        bus: {
+            name: 'common_bus',
+            toggle: 'toggleCommonBus',
+            selector: 'select[name^="bus_"]'
+        }
+    },
+
+    toggleSetting(setting) {
+        const selectedValue = document.querySelector(`input[name="${setting.name}"]:checked`)?.value;
+        console.log(`Toggle ${setting.name} called:`, selectedValue);
+        
+        const sectionCards = document.querySelectorAll('.section-card');
+        sectionCards.forEach(card => {
+            const input = card.querySelector(setting.selector);
+            if (input) {
+                const container = input.closest('div');
+                container.style.display = selectedValue === 'no' ? 'block' : 'none';
+                if (input.tagName === 'INPUT') {
+                    input.disabled = selectedValue !== 'no';
+                }
+            }
+        });
+    },
+
+    toggleCommonDepth() {
+        this.toggleSetting(this.settings.depth);
+    },
+
+    toggleCommonHeight() {
+        this.toggleSetting(this.settings.height);
+    },
+
+    toggleCommonAmperage() {
+        this.toggleSetting(this.settings.amperage);
+    },
+
+    toggleCommonBus() {
+        this.toggleSetting(this.settings.bus);
+    },
+
+    applyAllSettings() {
+        this.toggleCommonDepth();
+        this.toggleCommonHeight();
+        this.toggleCommonAmperage();
+        this.toggleCommonBus();
+    },
+
+    initializeEventListeners() {
+        Object.values(this.settings).forEach(setting => {
+            document.querySelectorAll(`input[name="${setting.name}"]`).forEach(radio => {
+                radio.addEventListener('change', () => this[setting.toggle]());
+            });
+        });
+    }
+};
+
 // Section Module - Handles section card creation and management
 const SectionModule = {
     createCard(sectionNumber) {
@@ -322,6 +396,12 @@ const SectionModule = {
                         <option value="4000">4000A</option>
                     </select>
                 </div>
+                <div style="display: none;">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Bus Size (inches)</label>
+                    <select name="bus_${sectionNumber}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="4">4"</option>
+                    </select>
+                </div>
             </div>
         `;
     },
@@ -338,70 +418,6 @@ const SectionModule = {
 
         // Re-apply common settings
         CommonSettingsModule.applyAllSettings();
-    }
-};
-
-// Common Settings Module - Handles common settings toggles and state
-const CommonSettingsModule = {
-    settings: {
-        depth: {
-            name: 'common_depth',
-            toggle: 'toggleCommonDepth',
-            selector: 'input[name^="depth_"]'
-        },
-        height: {
-            name: 'common_height',
-            toggle: 'toggleCommonHeight',
-            selector: 'input[name^="height_"]'
-        },
-        amperage: {
-            name: 'common_amperage',
-            toggle: 'toggleCommonAmperage',
-            selector: 'select[name^="amperage_"]'
-        }
-    },
-
-    toggleSetting(setting) {
-        const selectedValue = document.querySelector(`input[name="${setting.name}"]:checked`)?.value;
-        console.log(`Toggle ${setting.name} called:`, selectedValue);
-        
-        const sectionCards = document.querySelectorAll('.section-card');
-        sectionCards.forEach(card => {
-            const input = card.querySelector(setting.selector);
-            if (input) {
-                const container = input.closest('div');
-                container.style.display = selectedValue === 'no' ? 'block' : 'none';
-                if (input.tagName === 'INPUT') {
-                    input.disabled = selectedValue !== 'no';
-                }
-            }
-        });
-    },
-
-    toggleCommonDepth() {
-        this.toggleSetting(this.settings.depth);
-    },
-
-    toggleCommonHeight() {
-        this.toggleSetting(this.settings.height);
-    },
-
-    toggleCommonAmperage() {
-        this.toggleSetting(this.settings.amperage);
-    },
-
-    applyAllSettings() {
-        this.toggleCommonDepth();
-        this.toggleCommonHeight();
-        this.toggleCommonAmperage();
-    },
-
-    initializeEventListeners() {
-        Object.values(this.settings).forEach(setting => {
-            document.querySelectorAll(`input[name="${setting.name}"]`).forEach(radio => {
-                radio.addEventListener('change', () => this[setting.toggle]());
-            });
-        });
     }
 };
 
